@@ -1,9 +1,9 @@
 declare module "@capacitor/core" {
   interface PluginRegistry {
-    AudioPlugin: AudioPluginPlugin;
+    AudioPlugin: AudioPlugin;
   }
 }
 
-export interface AudioPluginPlugin {
-  echo(options: { value: string }): Promise<{value: string}>;
+export interface AudioPlugin {
+  play(options: { path: string }): Promise<void>;
 }
