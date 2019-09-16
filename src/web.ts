@@ -1,23 +1,29 @@
 import { WebPlugin } from '@capacitor/core';
-import { AudioPluginPlugin } from './definitions';
+import { AudioProtocol, PlayParams } from "./definitions";
 
-export class AudioPluginWeb extends WebPlugin implements AudioPluginPlugin {
+declare var window: any;
+
+export class Audio extends WebPlugin implements AudioProtocol {
   constructor() {
+    // Call super with the name of our plugin (this should match the native name),
+    // along with the platforms this plugin will activate on. For example, it's possible
+    // to use a web plugin for Android and iOS by adding them to the platforms list (lowercased)
     super({
-      name: 'AudioPlugin',
+      name: 'Audio',
       platforms: ['web']
     });
   }
 
-  async echo(options: { value: string }): Promise<{value: string}> {
-    console.log('ECHO', options);
-    return options;
+  async play(options: PlayParams): Promise<void> {
+    let path: string = options.path;
+    if(null == path || path.length == 0) {
+      return Promise.reject("Please, provide a non empty path.");
+    }
+    if(0 !== path.indexOf("/")) {
+      path = "/" + path;
+    }
+    let audio = new window.Audio(path);
+    audio.play();
+    //new window.Audio(path).play();
   }
 }
-
-const AudioPlugin = new AudioPluginWeb();
-
-export { AudioPlugin };
-
-import { registerWebPlugin } from '@capacitor/core';
-registerWebPlugin(AudioPlugin);

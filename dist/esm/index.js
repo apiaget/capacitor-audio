@@ -1,3 +1,3 @@
 export * from "./plugin";
-//export * from './web';
+export { Audio } from './web';
 //# sourceMappingURL=index.js.map

@@ -1,9 +1,7 @@
   
 import { Plugins } from "@capacitor/core";
-import { AudioProtocol } from "./definitions";
-import {
-    PlayParams
-  } from './definitions';
+import { AudioProtocol, PlayParams } from "./definitions";
+
 const { AudioPlugin } = Plugins;
 
 export class Audio implements AudioProtocol {

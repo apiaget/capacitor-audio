@@ -32,6 +32,8 @@ public class AudioPlugin extends Plugin {
             return;
         }
 
+        path = WEB_ASSET_DIR + "/" + path;
+
         try {
             AssetFileDescriptor afd = getContext().getAssets().openFd(path);
             final MediaPlayer mp = new MediaPlayer();
