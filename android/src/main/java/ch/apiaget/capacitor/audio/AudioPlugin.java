@@ -19,11 +19,15 @@ public class AudioPlugin extends Plugin {
 
     private final String WEB_ASSET_DIR = Bridge.DEFAULT_WEB_ASSET_DIR;
 
+
+    public void load() {
+    }
+
     @PluginMethod()
     public void play(PluginCall call) {
         String path = call.getString("path");
 
-        if(path.isEmpty()) {
+        if(path == null || path.isEmpty()) {
             call.reject("Please, provide a non empty path.");
             return;
         }

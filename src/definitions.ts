@@ -1,9 +1,13 @@
-declare module "@capacitor/core" {
+declare global {
   interface PluginRegistry {
-    AudioPlugin: AudioPlugin;
+    AudioPlugin?: AudioProtocol;
   }
 }
 
-export interface AudioPlugin {
-  play(options: { path: string }): Promise<void>;
+export interface PlayParams {
+  path: string;
+}
+
+export interface AudioProtocol {
+  play(options: PlayParams): Promise<void>;
 }
